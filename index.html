@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>甄嬛传性格测试｜穿越到大清后宫，你会是谁？</title>
+<style>
+:root{
+  --gold:#d9b46a;
+  --gold-lt:#f0d9a8;
+  --gold-dk:#a8843c;
+  --red:#8c1c2b;
+  --ink:#ece0cc;
+  --ink-dim:#b9a98f;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(ellipse at 50% -10%, #3a1119 0%, #1c080d 45%, #0b0407 100%) fixed;
+  color:var(--ink);
+  font-family:"Songti SC","STSong","SimSun","Noto Serif SC",serif;
+  line-height:1.75;
+  overflow-x:hidden;
+}
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(217,180,106,.05) 0, transparent 40%),
+    radial-gradient(circle at 85% 70%, rgba(140,28,43,.10) 0, transparent 45%);
+  pointer-events:none;z-index:0;
+}
+.wrap{
+  position:relative;z-index:1;
+  max-width:720px;
+  margin:0 auto;
+  padding:28px 18px 60px;
+}
+.screen{display:none;animation:fadeUp .45s ease both;}
+.screen.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+/* ============ 封面 ============ */
+.intro-card{
+  margin-top:6vh;
+  padding:38px 26px 34px;
+  border:1px solid rgba(217,180,106,.35);
+  border-radius:18px;
+  background:linear-gradient(165deg, rgba(70,22,32,.72), rgba(24,8,12,.9));
+  box-shadow:0 18px 50px rgba(0,0,0,.55), inset 0 0 60px rgba(217,180,106,.05);
+  text-align:center;
+}
+.ornament{
+  color:var(--gold);font-size:20px;letter-spacing:10px;opacity:.8;margin-bottom:10px;
+}
+.intro-card h1{
+  font-size:clamp(26px,7vw,36px);
+  margin:0 0 6px;
+  letter-spacing:4px;
+  background:linear-gradient(180deg,#f6e6c0,#d9b46a 55%,#a8843c);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  font-weight:700;
+}
+.intro-card .sub{
+  color:var(--gold);font-size:15px;letter-spacing:2px;margin:0 0 26px;opacity:.9;
+}
+.intro-text p{margin:6px 0;color:var(--ink-dim);font-size:15px;}
+.btn-primary{
+  display:inline-block;margin-top:28px;
+  padding:13px 46px;
+  font-size:17px;letter-spacing:4px;font-family:inherit;
+  color:#2a0d12;
+  background:linear-gradient(180deg,#f3dda9,#d9b46a 60%,#bb9445);
+  border:none;border-radius:40px;cursor:pointer;
+  box-shadow:0 8px 24px rgba(217,180,106,.28), inset 0 1px 0 rgba(255,255,255,.6);
+  transition:transform .18s, box-shadow .18s;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(217,180,106,.4);}
+.btn-primary:active{transform:translateY(0);}
+.hint{margin-top:16px;font-size:12.5px;color:#8d7f6b;letter-spacing:1px;}
+
+/* ============ 答题 ============ */
+.quiz-head{margin:8px 0 26px;}
+.progress-track{
+  height:5px;border-radius:5px;background:rgba(217,180,106,.14);overflow:hidden;
+}
+.progress-fill{
+  height:100%;width:0;border-radius:5px;
+  background:linear-gradient(90deg,#a8843c,#f0d9a8);
+  transition:width .35s ease;
+}
+.progress-text{
+  margin-top:10px;text-align:right;font-size:13px;color:var(--gold);letter-spacing:2px;
+}
+.q-card{
+  padding:28px 22px 10px;
+  border:1px solid rgba(217,180,106,.28);
+  border-radius:18px;
+  background:linear-gradient(165deg, rgba(58,18,26,.72), rgba(22,7,11,.9));
+  box-shadow:0 14px 40px rgba(0,0,0,.45);
+}
+.q-title{
+  font-size:clamp(17px,4.6vw,20px);
+  font-weight:600;line-height:1.7;
+  margin:0 0 22px;
+  color:#f4e8d2;
+  letter-spacing:.5px;
+}
+.q-title::before{
+  content:"";display:block;width:34px;height:2px;margin-bottom:14px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+}
+.options{display:flex;flex-direction:column;gap:12px;padding-bottom:22px;}
+.opt{
+  display:flex;align-items:flex-start;gap:12px;
+  width:100%;text-align:left;
+  padding:14px 16px;
+  font-family:inherit;font-size:15px;line-height:1.65;
+  color:var(--ink);
+  background:rgba(255,255,255,.035);
+  border:1px solid rgba(217,180,106,.2);
+  border-radius:12px;cursor:pointer;
+  transition:background .18s, border-color .18s, transform .18s;
+}
+.opt:hover{background:rgba(217,180,106,.12);border-color:rgba(217,180,106,.5);transform:translateX(3px);}
+.opt .key{
+  flex:none;width:24px;height:24px;margin-top:2px;
+  display:grid;place-items:center;
+  font-size:12.5px;font-weight:700;
+  color:var(--gold);
+  border:1px solid rgba(217,180,106,.5);border-radius:50%;
+  transition:all .18s;
+}
+.opt:hover .key{background:var(--gold);color:#2a0d12;}
+.opt.picked{
+  background:linear-gradient(90deg, rgba(217,180,106,.25), rgba(217,180,106,.08));
+  border-color:var(--gold);
+  transform:translateX(3px);
+}
+.opt.picked .key{background:var(--gold);color:#2a0d12;}
+.quiz-foot{display:flex;justify-content:center;margin-top:18px;}
+.btn-ghost{
+  padding:8px 22px;font-family:inherit;font-size:13.5px;letter-spacing:2px;
+  color:var(--ink-dim);background:transparent;
+  border:1px solid rgba(217,180,106,.25);border-radius:30px;cursor:pointer;
+  transition:all .18s;
+}
+.btn-ghost:hover{color:var(--gold);border-color:var(--gold);}
+.btn-ghost:disabled{opacity:.3;cursor:not-allowed;}
+
+/* ============ 结果 ============ */
+.result-hero{
+  text-align:center;
+  padding:34px 20px 30px;
+  border-radius:18px;
+  border:1px solid rgba(217,180,106,.4);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(217,180,106,.18), transparent 62%),
+    linear-gradient(165deg, rgba(72,22,32,.8), rgba(20,6,10,.92));
+  box-shadow:0 18px 50px rgba(0,0,0,.55);
+  margin-bottom:18px;
+  animation:pop .5s cubic-bezier(.2,.9,.3,1.2) both;
+}
+@keyframes pop{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+.hero-badge{
+  display:inline-block;padding:4px 16px;margin-bottom:16px;
+  font-size:12.5px;letter-spacing:3px;color:var(--gold);
+  border:1px solid rgba(217,180,106,.45);border-radius:30px;
+}
+.hero-name{
+  font-size:clamp(34px,10vw,46px);
+  letter-spacing:8px;font-weight:700;margin:0 0 12px;
+  background:linear-gradient(180deg,#fff3d6,#e2c07c 50%,#a8843c);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 0 30px rgba(217,180,106,.25);
+}
+.hero-score{font-size:13.5px;color:var(--ink-dim);letter-spacing:1.5px;}
+
+.card{
+  padding:22px 20px;
+  margin-bottom:14px;
+  border:1px solid rgba(217,180,106,.22);
+  border-radius:16px;
+  background:linear-gradient(165deg, rgba(52,16,24,.62), rgba(19,6,10,.86));
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+}
+.card-title{
+  margin:0 0 14px;
+  font-size:15.5px;font-weight:600;letter-spacing:2px;
+  color:var(--gold);
+  display:flex;align-items:center;gap:8px;
+}
+.card-title::after{
+  content:"";flex:1;height:1px;
+  background:linear-gradient(90deg, rgba(217,180,106,.35), transparent);
+}
+.card-lead{
+  font-size:16.5px;color:#f6ebd6;font-weight:600;margin:0 0 10px;letter-spacing:1px;
+}
+.card-text{margin:0;font-size:14.8px;color:#d8c9b1;line-height:1.9;text-align:justify;}
+.card-warn{
+  margin:14px 0 0;font-size:14px;color:#e0a9a0;line-height:1.8;
+  padding:10px 14px;border-left:2px solid rgba(224,169,160,.5);
+  background:rgba(140,28,43,.15);border-radius:0 8px 8px 0;
+}
+.keywords{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+.keywords span,.jobs span{
+  padding:5px 13px;font-size:12.5px;letter-spacing:1px;
+  color:var(--gold-lt);
+  border:1px solid rgba(217,180,106,.35);
+  border-radius:30px;
+  background:rgba(217,180,106,.08);
+}
+.jobs{display:flex;flex-wrap:wrap;gap:8px;}
+
+.radar-wrap{
+  display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:center;
+}
+#radarCanvas{display:block;}
+.legend{
+  flex:1;min-width:210px;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 16px;
+}
+.legend-item{
+  display:grid;grid-template-columns:30px 1fr 30px;align-items:center;gap:7px;
+  font-size:12.5px;color:var(--ink-dim);
+}
+.lg-name{white-space:nowrap;}
+.lg-bar{height:5px;border-radius:4px;background:rgba(217,180,106,.15);overflow:hidden;}
+.lg-bar i{
+  display:block;height:100%;border-radius:4px;
+  background:linear-gradient(90deg,#a8843c,#f0d9a8);
+  animation:grow .9s cubic-bezier(.2,.8,.3,1) both;
+}
+@keyframes grow{from{width:0 !important}}
+.lg-val{text-align:right;color:var(--gold-lt);font-size:12px;}
+
+.survive-line{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:10px;}
+.rating{
+  padding:4px 14px;font-size:13px;letter-spacing:2px;font-weight:700;
+  color:#2a0d12;border-radius:30px;
+  background:linear-gradient(180deg,#f3dda9,#d9b46a);
+}
+.rating-note{font-size:12.5px;color:var(--ink-dim);letter-spacing:1px;}
+
+.result-actions{display:flex;justify-content:center;gap:14px;margin-top:26px;flex-wrap:wrap;}
+.foot-note{
+  margin-top:34px;text-align:center;font-size:12px;color:#6f6355;letter-spacing:1px;
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 封面 -->
+  <section id="screen-intro" class="screen active">
+    <div class="intro-card">
+      <div class="ornament">❖ ❖ ❖</div>
+      <h1>甄嬛传性格测试</h1>
+      <p class="sub">穿越到大清后宫，你会是谁？</p>
+      <div class="intro-text">
+        <p>深宫冷暖，人心叵测。</p>
+        <p>面对猜忌、恩宠、背叛与情义，你会如何抉择？</p>
+        <p>完成 20 道单选题，看看你的灵魂，</p>
+        <p>最像《甄嬛传》里哪一位人物。</p>
+      </div>
+      <button class="btn-primary" id="startBtn">开 始 测 试</button>
+      <p class="hint">共 20 题 · 约 3 分钟 · 20 种人物结局</p>
+    </div>
+  </section>
+
+  <!-- 答题 -->
+  <section id="screen-quiz" class="screen">
+    <div class="quiz-head">
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <div class="progress-text"><span id="qIndex">1</span> / 20</div>
+    </div>
+    <div class="q-card">
+      <h2 class="q-title" id="qTitle"></h2>
+      <div class="options" id="options"></div>
+    </div>
+    <div class="quiz-foot">
+      <button class="btn-ghost" id="prevBtn">← 上一题</button>
+    </div>
+  </section>
+
+  <!-- 结果 -->
+  <section id="screen-result" class="screen">
+    <div class="result-hero" id="resultHero"></div>
+    <div id="resultBody"></div>
+    <div class="result-actions">
+      <button class="btn-primary" id="restartBtn">再 测 一 次</button>
+    </div>
+    <p class="foot-note">本测试仅供娱乐 · 深宫路远，愿你所遇皆真心</p>
+  </section>
+
+</div>
+
+<script>
+/* =========================================================
+   题库：20 题
+   计分：A=3分  B=1分  C=2分  D=4分
+   ========================================================= */
+const SCORES = [3, 1, 2, 4];
+
+const QUESTIONS = [
+  { q:"当你被人无端当众刁难，你会？", o:[
+    "隐忍不发作，暗中寻找机会反击",
+    "当场直接翻脸，不给对方留面子",
+    "委屈难过，害怕冲突，尽量讨好求和",
+    "冷静周旋，用言语化解矛盾，不硬碰硬"
+  ]},
+  { q:"你最看重一段关系里的？", o:[
+    "绝对专一，真心不变",
+    "地位权势，体面尊荣",
+    "彼此扶持，真心相待",
+    "利益互惠，互相成全"
+  ]},
+  { q:"如果身边好友获得远超你的机会，你内心第一反应？", o:[
+    "真心为她高兴，默默守护",
+    "心生嫉妒，暗中使绊子",
+    "有点自卑，觉得自己比不上对方",
+    "保持距离，静观事态发展"
+  ]},
+  { q:"面对上位者的偏爱，你的态度？", o:[
+    "珍惜这份恩宠，但保留自我底线",
+    "享受独一份宠爱，想要独占所有关注",
+    "惶恐不安，害怕这份宠爱随时消失",
+    "不贪恋恩宠，可有可无"
+  ]},
+  { q:"被人陷害，百口莫辩时，你会？", o:[
+    "暂避锋芒，等待时机自证清白",
+    "激烈争辩，不顾一切控诉对方",
+    "无力辩解，只能默默承受苦难",
+    "提前布局，留下证据，一击破局"
+  ]},
+  { q:"你待人的原则是？", o:[
+    "人不犯我我不犯人，人若犯我必回击",
+    "亲近之人全心交付，愿意舍命相护",
+    "看人下菜碟，优先保全自己",
+    "外表温和，内心提防所有人"
+  ]},
+  { q:"你更愿意和哪一类人做朋友？", o:[
+    "心性正直，彼此信任的知己",
+    "有权势，能帮你提升地位的人",
+    "温柔包容，能包容你的自卑敏感",
+    "聪明通透，懂得守口如瓶的智者"
+  ]},
+  { q:"如果为了保护在乎的人，你是否愿意牺牲自己？", o:[
+    "愿意，心甘情愿付出一切",
+    "看代价，不会轻易牺牲自己",
+    "嘴上愿意，内心会权衡利弊",
+    "绝不牺牲，优先保全自身"
+  ]},
+  { q:"你对待过往伤痛的态度？", o:[
+    "铭记伤痛，学会成长，不再天真",
+    "无法释怀，一直记恨报复",
+    "深埋心底，反复内耗折磨自己",
+    "看淡得失，尽量放下过往"
+  ]},
+  { q:"当发现信任的人欺骗了你，你会？", o:[
+    "慢慢疏远，不再信任，不再交心",
+    "恼羞成怒，立刻撕破脸报复",
+    "自我怀疑，是不是自己不够好",
+    "不动声色，继续观察，留后手"
+  ]},
+  { q:"你做选择，更多依靠？", o:[
+    "理性权衡利弊，深思熟虑",
+    "凭一腔真心，跟着情感走",
+    "凭直觉，容易被别人煽动",
+    "依靠经验，懂得顺势而为"
+  ]},
+  { q:"面对虚伪客套的人情应酬，你？", o:[
+    "配合演戏，表面得体，内心清醒",
+    "厌烦虚伪，不想勉强自己应付",
+    "小心翼翼，害怕说错话得罪人",
+    "游刃有余，擅长利用应酬获取好处"
+  ]},
+  { q:"你对权力地位的看法？", o:[
+    "权力是自保工具，不是最终追求",
+    "极度渴望，愿意不择手段争夺",
+    "不主动争夺，被推到位置就接受",
+    "看淡权势，向往自由无拘束"
+  ]},
+  { q:"你最无法忍受？", o:[
+    "欺骗与背叛",
+    "别人分走本该属于你的宠爱",
+    "被轻视、被看不起",
+    "身不由己，失去自由"
+  ]},
+  { q:"如果你有能力，你会帮处境艰难的陌生人吗？", o:[
+    "酌情出手，有底线的施以援手",
+    "不会，非亲非故，不愿多管闲事",
+    "想帮忙，但害怕惹祸上身不敢行动",
+    "看对方有没有利用价值"
+  ]},
+  { q:"生活里，你习惯？", o:[
+    "谋定而后动，凡事留退路",
+    "爱恨直白，情绪写在脸上",
+    "心思敏感，容易胡思乱想",
+    "善于察言观色，看透人心"
+  ]},
+  { q:"一段感情走到尽头，你会？", o:[
+    "体面放手，放下情爱，专注自身",
+    "不甘心，想尽办法挽回或者报复",
+    "沉溺悲伤，久久走不出来",
+    "及时抽身，及时止损"
+  ]},
+  { q:"你是否愿意为了大局，委屈自己？", o:[
+    "可以暂时忍耐，等待时机翻盘",
+    "绝不委屈自己，不愿受半点委屈",
+    "常常委屈自己，习惯迁就他人",
+    "权衡利弊，只有收益足够才妥协"
+  ]},
+  { q:"别人对你好，你会？", o:[
+    "记在心里，寻机会回报",
+    "觉得理所应当，享受优待",
+    "惶恐不安，担心对方另有所图",
+    "分辨对方目的，判断是真情还是利用"
+  ]},
+  { q:"假如可以选择，你最想要的生活是？", o:[
+    "安稳自在，守着在意之人平安度日",
+    "手握权力，万人敬仰，风光无限",
+    "简单纯粹，无争斗，无忧无虑",
+    "远离纷争，自由自在不受管束"
+  ]}
+];
+
+/* =========================================================
+   20 位人物详细报告
+   ========================================================= */
+const RADAR_KEYS = ["智商","情商","城府","善良","野心","隐忍","胆识","通透"];
+
+const RESULTS = [
+{
+  name:"甄嬛", min:70, max:80, tag:"终极满级大女主",
+  portrait:"大智若愚，外柔内刚。",
+  desc:"初时天真纯粹，历经世事沧桑后学会隐忍筹谋。重情义，但不被情爱束缚；懂得审时度势，既能温柔待人，被伤害后也有自保反击的魄力。你不是天生强大，是苦难打磨出你的城府，内心依旧保留一份善良底线。",
+  keywords:["清醒","隐忍","成长型","知世故而不世故"],
+  weakness:"太重感情，容易被信任之人伤害。",
+  radar:[9.8,9.7,9.9,7.5,9.6,9.9,9.7,9.9],
+  survive:"可完整活满 76 集｜最终登顶太后",
+  rating:"SSS", ratingNote:"全剧唯一满级通关者",
+  fate:"凤凰涅槃格", fateText:"先甜后苦、大破大立。一生三次蜕变：纯真少女 → 失意废妃 → 权谋太后。",
+  deep:"你是典型的「成长型王者人格」。初入世事温柔纯粹、待人赤诚，受过背叛、情爱重伤、生死绝境后，没有黑化堕落，而是长出铠甲与城府。你最大的特质：知世故而不世故，善自保而不滥杀。你重情义、有底线、懂感恩，但绝不圣母。谁对你真心，你倾尽所有回报；谁害你性命，你必百倍清算。",
+  jobs:["终极掌权者","后宫制衡者","残局收割者","智囊天花板"],
+  fatal:"前期太重情爱、容易心软；对信任的人毫无防备，容易被至亲挚友背刺。",
+  ending:"你失去了所有少年热忱与所爱之人，赢了权力、赢了余生安稳，唯独输掉真心。你是整部甄嬛传：最清醒、最坚韧、最孤独的成功者。",
+  modern:"高智商高情商 · 逆境重生型领袖人格"
+},
+{
+  name:"甄玉娆", min:67, max:69, tag:"世间最干净通透的白月光",
+  portrait:"明艳率真，不慕荣华。",
+  desc:"你有傲气，不贪恋权贵虚名，遵从本心。分得清什么是恩宠，什么是真心，不愿为了富贵委屈自己。爱恨坦荡，敢于拒绝不属于自己的诱惑，一生追求真心相待的感情。",
+  keywords:["纯粹","傲骨","通透","不贪慕虚荣"],
+  weakness:"太过直白，容易无意中得罪有心之人。",
+  radar:[9.2,8.8,6.0,9.8,3.0,7.0,8.9,9.7],
+  survive:"全程活到 76 集，安稳落幕",
+  rating:"SS", ratingNote:"全剧最幸运、最干净的赢家",
+  fate:"清风明月格", fateText:"不染深宫尘埃，天生避祸体质。",
+  deep:"你傲骨天生、清澈通透，是整部剧唯一不慕权贵、不贪荣华、只忠于真心的人。你聪明机敏、看人极准，分得清假意恩宠、看得透帝王薄情。你有傲气、有骨气，绝不将就、绝不攀附。",
+  jobs:["深宫清流","帝王克星","清醒旁观者"],
+  fatal:"性格过于直白刚烈，不懂圆滑周旋，容易得罪伪善小人。",
+  ending:"全剧唯一获得圆满爱情 + 安稳余生的女性，是甄嬛一生羡慕却回不去的自己。",
+  modern:"高通透 · 极简清醒型人格"
+},
+{
+  name:"沈眉庄", min:64, max:66, tag:"至死风骨不染尘",
+  portrait:"端庄自持，风骨凛然。",
+  desc:"品性端正，有大家风范，一旦心冷便绝不回头。对待知己极其真诚，重情重义，有自己的原则底线，不屑于勾心斗角。内心骄傲，不愿勉强自己去讨好别人。",
+  keywords:["风骨","专一","重情义","自尊"],
+  weakness:"一旦被伤，很难走出心结，容易封闭内心。",
+  radar:[9.5,8.5,7.8,9.6,4.0,8.8,9.2,9.3],
+  survive:"存活 1—64 集｜第 64 集难产薨逝",
+  rating:"S+", ratingNote:"风骨满分，运气不足",
+  fate:"君子如玉格", fateText:"宁折不弯、清白一生。",
+  deep:"你是后宫最珍贵的「君子型人格」。端庄、自持、原则极强。你可以温柔，但绝不卑微；可以善良，但绝不妥协。一旦心死，即刻抽身，绝不纠缠、不内耗、不回头。你对知己极致真诚，是别人危难中唯一敢挺身而出的人。",
+  jobs:["后宫君子","正直标杆","顶级挚友"],
+  fatal:"太过骄傲清高，不愿圆滑自保，容易被小人暗算。",
+  ending:"你是全剧口碑、人品、情义满分的白月光，唯一遗憾：一生清醒，却不得善终。",
+  modern:"高原则 · 重情重义理想主义人格"
+},
+{
+  name:"端妃", min:61, max:63, tag:"隐忍蛰伏的慈悲智者",
+  portrait:"沉静隐忍，看透世事。",
+  desc:"饱经磨难，看淡宫廷纷争，表面与世无争，心中洞察一切。懂得蛰伏等待，不主动挑起争斗，但在关键时刻出手相助，知恩图报。历经苦难，依旧心怀善意。",
+  keywords:["隐忍","通透","慈悲","厚积薄发"],
+  weakness:"常年习惯退让，很多委屈习惯自己默默承受。",
+  radar:[9.6,9.5,9.4,8.8,2.0,10.0,8.5,9.8],
+  survive:"全程活满 76 集，安稳终老",
+  rating:"SSS", ratingNote:"深宫顶级苟活王者",
+  fate:"静水藏珠格", fateText:"大忍之人，必有大福。",
+  deep:"你看透所有人心、看透所有纷争，却从不张扬、从不害人。你一生受尽委屈、被辜负、被利用，却依旧心怀善意。你懂蛰伏、懂等待、懂站队、懂自保，是后宫最顶级的「清醒旁观者」。",
+  jobs:["深宫智囊","长期投资人","终极赢家"],
+  fatal:"习惯隐忍退让，所有委屈独自消化，从不倾诉。",
+  ending:"不争不抢，却熬死所有争斗者，晚年安稳、得尊得敬。",
+  modern:"通透隐忍 · 高慧低欲人格"
+},
+{
+  name:"崔槿汐", min:58, max:60, tag:"人间清醒顶级智囊",
+  portrait:"忠心睿智，洞察人心。",
+  desc:"心思缜密，善于观察，懂人情世故，做事稳妥周全。懂得审时度势，选择值得托付的人相伴，遇事冷静，擅长出谋划策，守口如瓶。",
+  keywords:["聪慧","忠诚","稳重","识时务"],
+  weakness:"一旦认定一个人，容易为对方过度牺牲。",
+  radar:[9.7,9.8,9.5,8.0,5.0,9.6,9.0,9.9],
+  survive:"1—76 集全程存活，陪甄嬛至终老",
+  rating:"SSS", ratingNote:"最强辅助王者",
+  fate:"良臣辅佐格", fateText:"慧眼识人、择主而事。",
+  deep:"你是极度清醒的现实智者。懂人情、懂世故、懂人心险恶，却保留忠诚底线。你从不盲目善良，也从不无端作恶。看准值得的人，倾尽所有辅佐；看透不值得的人，立刻远离。",
+  jobs:["顶级军师","人生贵人","局势操盘手"],
+  fatal:"太重忠义，容易为在乎的人过度牺牲。",
+  ending:"从底层宫女走到太后第一心腹，深宫打工者的终极天花板。",
+  modern:"高情商实战型智囊人格"
+},
+{
+  name:"敬妃", min:55, max:57, tag:"温柔稳局的岁月赢家",
+  portrait:"温和谨慎，稳中求安。",
+  desc:"性格柔和，处事小心，不主动争宠，懂得避其锋芒。内心渴望陪伴，珍惜来之不易的温暖，懂得权衡，在复杂环境保全自己与珍视之人。",
+  keywords:["谨慎","温和","求安稳","知足"],
+  weakness:"缺少主动破局的勇气，习惯被动等待。",
+  radar:[9.0,9.3,8.9,9.0,3.5,9.7,7.5,9.2],
+  survive:"1—76 集全程存活，安稳太妃",
+  rating:"SS", ratingNote:"稳中求胜的终极赢家",
+  fate:"温和守成格", fateText:"不争不抢、岁岁平安。",
+  deep:"你温柔谨慎、心性柔软、极度渴望安稳。你不主动害人、不主动争宠、不主动结怨。擅长避锋芒、懂分寸、懂退让、懂抱团取暖。你是乱世中最难得的安稳派。",
+  jobs:["后宫稳局者","温柔靠山","长期合作者"],
+  fatal:"缺乏主动破局的勇气，习惯被动等待。",
+  ending:"无大风大浪、无大起大落，安稳高位、儿女绕膝。",
+  modern:"温和谨慎 · 安稳知足人格"
+},
+{
+  name:"苏培盛", min:52, max:54, tag:"看透帝王心的顶级人精",
+  portrait:"八面玲珑，洞悉人心。",
+  desc:"深谙人情世故，察言观色能力极强，游走在复杂环境之中。懂得把握分寸，知进退，重情义，分得清利弊，表面圆滑，内心有自己的底线。",
+  keywords:["通透","圆滑","知进退","重情义"],
+  weakness:"身处局中，很多选择身不由己。",
+  radar:[9.5,10.0,9.6,7.0,4.5,9.8,8.8,9.9],
+  survive:"全程活至大结局，全身而退",
+  rating:"SSS", ratingNote:"深宫情商天花板",
+  fate:"玲珑处世格", fateText:"深谙规则、进退自如。",
+  deep:"你看透皇权冷暖、看透人性薄凉。表面圆滑世故，内心极有底线、极重情义。你会做事、会做人、会察言、会观色，却从不滥用权力害人。",
+  jobs:["帝王近臣","人情世故导师","局势润滑剂"],
+  fatal:"身在棋局，身不由己，很多选择无法随心。",
+  ending:"权倾后宫却不贪权，得善终、得尊重、得真心。",
+  modern:"超高情商 · 世故通透人格"
+},
+{
+  name:"叶澜依", min:49, max:51, tag:"桀骜烈性的自由战神",
+  portrait:"桀骜野性，爱恨热烈。",
+  desc:"性子刚烈，不屑世俗规矩，不爱荣华富贵，只忠于内心所爱。爱就奋不顾身，恨就决绝到底，宁折不弯，不愿向强权低头。",
+  keywords:["桀骜","深情","刚烈","不畏强权"],
+  weakness:"性格太过刚烈，容易被情绪左右，难以迂回。",
+  radar:[8.9,7.0,7.5,8.5,1.0,6.0,9.9,9.5],
+  survive:"存活 1—74 集｜第 74 集殉情自尽",
+  rating:"A", ratingNote:"战力满分，不懂隐忍",
+  fate:"烈骨长风格", fateText:"宁为玉碎、不为瓦全。",
+  deep:"你是整部剧最不羁、最洒脱、最刚烈的人。你不爱荣华、不慕皇权、不屑恩宠。一生只为真心而活，爱恨极致、坦荡热烈。",
+  jobs:["绝世高手","独行侠客","最硬底牌"],
+  fatal:"性格太刚、不懂迂回，情绪刚烈容易自毁。",
+  ending:"一生桀骜不驯，为爱而生、为爱而死，热烈且纯粹。",
+  modern:"极致自我 · 烈性自由人格"
+},
+{
+  name:"果郡王", min:46, max:48, tag:"温柔深情的悲情王爷",
+  portrait:"温柔浪漫，向往自由。",
+  desc:"才华横溢，不喜朝堂纷争，追求真挚纯粹的爱情。待人宽厚善良，心怀悲悯，愿意为所爱之人赴汤蹈火。",
+  keywords:["浪漫","深情","仁厚","向往自由"],
+  weakness:"容易感情用事，忽略现实风险。",
+  radar:[8.8,8.7,6.5,9.7,2.5,7.2,9.1,8.5],
+  survive:"存活 1—71 集｜第 71 集被赐毒酒薨逝",
+  rating:"A+", ratingNote:"人品满分，政治低分",
+  fate:"风雅多情格", fateText:"才情绝世、情深不寿。",
+  deep:"你温柔仁厚、心怀悲悯、才华横溢。你厌倦权谋争斗，向往山水自由。爱上一个人便倾尽所有、不顾生死。",
+  jobs:["风雅君子","温柔靠山","乱世良人"],
+  fatal:"太重感情、容易恋爱脑，忽视政治风险。",
+  ending:"一生深情、一生坦荡，却死于帝王猜忌与深情。",
+  modern:"浪漫理想 · 温柔悲悯人格"
+},
+{
+  name:"流朱", min:43, max:45, tag:"赤诚纯粹忠勇少女",
+  portrait:"赤诚热烈，忠心护主。",
+  desc:"性格鲜活直率，心思简单没有城府，喜怒哀乐都写在脸上。待人赤诚，愿意为守护在意之人拼上一切，勇敢热忱。",
+  keywords:["赤诚","勇敢","忠心","单纯"],
+  weakness:"心思单纯，不懂人心险恶，容易吃亏。",
+  radar:[7.5,8.0,2.0,10.0,0.0,6.5,9.8,7.0],
+  survive:"存活 1—26 集｜第 26 集撞刀殉主",
+  rating:"B+", ratingNote:"赤诚满分，不懂人心险恶",
+  fate:"赤子忠魂格", fateText:"纯粹热烈、忠勇无双。",
+  deep:"你心思干净、毫无城府、喜怒哀乐直白纯粹。你认定的人，便拼尽全力守护、不计生死。你是世间最珍贵的赤诚与勇敢。",
+  jobs:["最忠心伙伴","温暖小太阳"],
+  fatal:"太过单纯、不懂人心阴暗，容易被局势牺牲。",
+  ending:"以命护主、短暂一生，热烈无悔、万人意难平。",
+  modern:"纯良热烈 · 赤诚勇敢人格"
+},
+{
+  name:"纯元皇后", min:40, max:42, tag:"人间理想白月光",
+  portrait:"温柔无瑕，纯粹善良。",
+  desc:"天性温柔美好，待人宽厚，心思纯净，没有防备心。你相信人间真情，待人温柔和善，像一束干净的光。",
+  keywords:["温柔","纯粹","仁善","理想主义"],
+  weakness:"太过天真，缺少防备，容易被暗处的人伤害。",
+  radar:[8.7,9.0,3.0,10.0,1.0,8.0,7.8,8.2],
+  survive:"1—20 集早逝（剧情回溯人物）",
+  rating:"A", ratingNote:"温柔满分，无自保能力",
+  fate:"至善纯白格", fateText:"一生温柔、一生无瑕。",
+  deep:"你天性温柔仁善、待人宽厚、心性纯粹。你相信真情、相信善意、不懂算计、不懂防备。你是所有人心中的白月光，完美无瑕。",
+  jobs:["盛世贤后","温柔标杆"],
+  fatal:"太过天真善良，缺乏防人之心，极易被暗处之人算计。",
+  ending:"一生温柔纯良，过早凋零，成为终生遗憾。",
+  modern:"极致温柔 · 理想善良人格"
+},
+{
+  name:"瑛贵人", min:37, max:39, tag:"无辜飘零的乱世美人",
+  portrait:"温柔安静，身不由己。",
+  desc:"品性温婉，不争不抢，本性善良，没有害人之心。身处复杂环境，很多事情无法自主，性格柔软，习惯逆来顺受。",
+  keywords:["温婉","安静","无辜","被动"],
+  weakness:"缺少自保能力，容易被动卷入纷争。",
+  radar:[7.8,8.2,4.0,9.5,0.5,9.2,6.0,7.5],
+  survive:"存活 1—62 集｜第 62 集被冤赐死",
+  rating:"B", ratingNote:"无罪获罪，身不由己",
+  fate:"浮萍漂泊格", fateText:"貌美无罪、怀璧其罪。",
+  deep:"你温柔安静、不争不抢、安分守己。你从不想卷入纷争，却总被命运裹挟。你善良无辜、谨小慎微，却难逃深宫流言刀剑。",
+  jobs:["深宫透明人","安分良人"],
+  fatal:"太过被动、毫无自保之力，容易沦为权力牺牲品。",
+  ending:"清清白白、无辜枉死，深宫最委屈的悲剧美人。",
+  modern:"温柔被动 · 安分柔弱人格"
+},
+{
+  name:"欣贵人", min:34, max:36, tag:"清醒爽直的人间明白人",
+  portrait:"爽直通透，懂得站队。",
+  desc:"性格爽快，嘴直心善，不喜欢勾心斗角。看得清局势，懂得分辨敌我，不主动害人，但别人欺负自己，也会巧妙反击。",
+  keywords:["直率","清醒","接地气","恩怨分明"],
+  weakness:"说话比较直接，容易无心之言惹祸。",
+  radar:[8.9,8.8,7.2,8.2,3.0,8.5,8.7,9.4],
+  survive:"1—76 集全程安稳活到最后",
+  rating:"SS", ratingNote:"普通人深宫最强生存范本",
+  fate:"通透爽利格", fateText:"不惹事、不怕事、懂站队。",
+  deep:"你性格直爽、恩怨分明、嘴直心善。不爱勾心斗角、不主动害人、不参与内卷。局势看得极清，懂得适时借力、适时自保。",
+  jobs:["清醒路人王","局势观察者"],
+  fatal:"说话太直，容易无心得罪小人。",
+  ending:"不争不抢、不攀不比，安稳度日、笑到最后。",
+  modern:"清醒直球 · 通透务实人格"
+},
+{
+  name:"皇上", min:31, max:33, tag:"孤家寡人的权力囚徒",
+  portrait:"多疑薄情，权衡至上。",
+  desc:"擅长权衡利弊，习惯猜忌他人，习惯用利益衡量感情。懂得笼络人心，拥有掌控欲，很难全然信任任何人。",
+  keywords:["多疑","掌控欲","理性","权衡利弊"],
+  weakness:"很难交付真心，永远优先保全自己权威。",
+  radar:[9.3,6.5,9.8,4.0,10.0,9.5,9.6,8.8],
+  survive:"存活 1—76 集｜大结局驾崩",
+  rating:"SS", ratingNote:"权力满级，人心归零",
+  fate:"孤皇命格", fateText:"至高无上、至孤至寡。",
+  deep:"你多疑凉薄、权欲滔天、凡事权衡利弊。你一生掌控所有人、掌控所有命运，唯独掌控不了真心。你擅长笼络人心、利用人心、算计人心，从不信任任何人。",
+  jobs:["最高掌权者","终极博弈者"],
+  fatal:"生性多疑、薄情寡义，最终众叛亲离。",
+  ending:"坐拥万里江山，一生孤独、无人真心相送。",
+  modern:"极致利己 · 权力型偏执人格"
+},
+{
+  name:"浣碧", min:28, max:30, tag:"自卑倔强的执念之人",
+  portrait:"不甘平凡，内心自卑。",
+  desc:"自尊心强，内心藏着自卑，渴望被看见、被认可。有野心，渴望名分与荣光，本性不坏，但容易被嫉妒和执念裹挟。",
+  keywords:["倔强","不甘","执念","自卑"],
+  weakness:"容易嫉妒，常常看不清自己真正想要什么。",
+  radar:[8.2,7.5,8.0,6.5,8.8,7.0,8.3,6.8],
+  survive:"存活 1—75 集｜第 75 集果郡王死后自尽",
+  rating:"B+", ratingNote:"执念太深、自我困住",
+  fate:"偏执不甘格", fateText:"一生要强、一生自卑。",
+  deep:"你倔强、要强、不甘平庸、渴望被认可。你聪明、努力、上进，却始终困在身份与自卑中。你本性不坏，却极易嫉妒、极易失衡。",
+  jobs:["奋进逆袭者","执念奋斗型"],
+  fatal:"内心极度自卑，永远看不见自己拥有的，只盯着得不到的。",
+  ending:"一生争名分、争体面、争认可，最终执念成空。",
+  modern:"高执念 · 自卑逆袭矛盾人格"
+},
+{
+  name:"安陵容", min:25, max:27, tag:"敏感拧巴的悲剧天才",
+  portrait:"敏感自卑，心思拧巴。",
+  desc:"内心极度敏感，容易自卑，渴望被认可。容易因为比较产生嫉妒，内心缺少安全感，在压力之下，会选择伤害曾经亲近的人保护自己。",
+  keywords:["敏感","自卑","缺安全感","拧巴"],
+  weakness:"容易内耗，被嫉妒困住，容易走向极端。",
+  radar:[9.4,8.3,9.2,5.0,9.5,9.3,8.5,7.2],
+  survive:"存活 1—68 集｜第 68 集服食苦杏仁自尽",
+  rating:"S", ratingNote:"能力满分，心性残缺",
+  fate:"卑微执念格", fateText:"天才易碎、心魔自困。",
+  deep:"你极度敏感、极度缺爱、极度自卑。你聪明绝顶、才艺绝世、悟性极高。你本可前程大好，却一生困在比较、自卑、猜忌里。你渴望被爱、被认可，却用错误的方式证明自己。",
+  jobs:["绝世才艺者","隐忍蛰伏者","细节天才"],
+  fatal:"永远内耗、永远比较、永远无法与自己和解。",
+  ending:"亲手毁掉所有真心、亲手葬送自己一生。",
+  modern:"高敏感 · 高内耗 · 极致拧巴人格"
+},
+{
+  name:"曹琴默", min:22, max:24, tag:"机关算尽的悲情谋士",
+  portrait:"聪慧毒辣，为母谋算。",
+  desc:"头脑机敏，擅长谋划，懂得借力打力。一切谋划出发点都是为保护自己最重要的人，为了目标可以不择手段。",
+  keywords:["聪明","有谋略","护子","狠辣"],
+  weakness:"机关算尽，容易被欲望裹挟，难以抽身。",
+  radar:[9.6,9.4,9.7,4.5,9.0,9.4,8.8,8.9],
+  survive:"存活 1—43 集｜第 43 集被皇上太后赐毒酒灭口",
+  rating:"S-", ratingNote:"智商顶级，不懂收手",
+  fate:"聪明太过格", fateText:"慧极必伤、过刚易折。",
+  deep:"你智谋绝顶、心思缜密、擅长借刀杀人、布局控局。你所有恶毒、所有算计，全部只为孩子与生存。你是整部剧最清醒、最会玩权谋的嫔妃，唯独不懂藏锋。",
+  jobs:["顶级权谋谋士","局势操盘手"],
+  fatal:"锋芒太露、功利太重、不知进退，让上位者忌惮。",
+  ending:"聪明一世、机关算尽，因太过能干而被灭口。",
+  modern:"极致功利 · 高智商权谋人格"
+},
+{
+  name:"宜修皇后", min:19, max:21, tag:"执念成魔的深宫困兽",
+  portrait:"隐忍腹黑，执念深重。",
+  desc:"外表端庄和善，内心藏着长久的怨恨。极度看重地位，被执念困住，善于布局，不动声色除去威胁自己的人。",
+  keywords:["隐忍","执念","城府","擅长伪装"],
+  weakness:"困在过往的痛苦里，执念毁掉自己。",
+  radar:[9.5,9.2,9.9,3.0,9.8,9.9,9.0,8.5],
+  survive:"存活 1—76 集｜终生禁足景仁宫",
+  rating:"SS", ratingNote:"活到老、困到老",
+  fate:"执念囚笼格", fateText:"一生算计、一生落空。",
+  deep:"你隐忍至极、伪装至极、城府至极。你端庄温柔的外表下，是数十年的怨恨与不甘。你一生只为后位、只为嫡出、只为不被替代而活。",
+  jobs:["终极布局者","制度掌控者"],
+  fatal:"被过往痛苦困住一生，执念大于一切。",
+  ending:"赢了半生争斗，最终一无所有、孤独囚至终老。",
+  modern:"高隐忍 · 高偏执 · 复仇型人格"
+},
+{
+  name:"华妃", min:16, max:18, tag:"热烈张扬的至情至性",
+  portrait:"热烈张扬，爱恨浓烈。",
+  desc:"性子骄纵，爱恨直白，爱得轰轰烈烈。占有欲极强，无法忍受分享宠爱，行事张扬，敢爱敢恨。",
+  keywords:["张扬","热烈","占有欲","真性情"],
+  weakness:"性格骄纵，容易意气用事，看不清人心。",
+  radar:[7.9,6.8,6.5,7.2,9.2,5.5,9.8,6.5],
+  survive:"存活 1—42 集｜第 42 集撞墙自尽",
+  rating:"A-", ratingNote:"性情太真、不适深宫",
+  fate:"烈火繁花格", fateText:"盛放热烈、凋零决绝。",
+  deep:"你爱恨浓烈、性情张扬、真性情无伪装。你跋扈但不坏、嚣张但坦荡。你一生痴情、一生热烈、一生执着于偏爱。",
+  jobs:["宠冠六宫的热烈爱人"],
+  fatal:"太相信情爱、太依赖恩宠、太不懂收敛。",
+  ending:"半生荣华、半生盛宠，最终为爱绝望赴死。",
+  modern:"热烈外放 · 偏执深情人格"
+},
+{
+  name:"祺贵人", min:0, max:15, tag:"骄纵无脑的深宫炮灰",
+  portrait:"骄纵浅薄，冲动易怒。",
+  desc:"家世带来傲气，心思简单，城府很浅。容易被人挑唆，遇事冲动，喜欢争强好胜，嘴快无谋。",
+  keywords:["骄纵","冲动","单纯","争强好胜"],
+  weakness:"没有城府，容易被人利用，祸从口出。",
+  radar:[5.5,6.0,3.0,6.5,7.5,4.0,9.0,4.0],
+  survive:"存活 1—60 集｜第 60 集被乱棍打死",
+  rating:"C", ratingNote:"标准深宫短命炮灰",
+  fate:"骄浅短视格", fateText:"恃宠而骄、祸从口出。",
+  deep:"你性子急躁、骄纵直白、城府极浅。心不坏但蠢、嘴快、易怒、容易被人挑唆利用。爱争面子、爱逞强、爱炫耀，看不清局势深浅。",
+  jobs:["无脑工具人","深宫背景板"],
+  fatal:"冲动易怒、口无遮拦、毫无自保智慧。",
+  ending:"家世优越却自作死，活成最短视的悲剧。",
+  modern:"冲动外放 · 短视单纯人格"
+}
+];
+
+/* =========================================================
+   逻辑
+   ========================================================= */
+const $ = id => document.getElementById(id);
+let current = 0;
+const answers = new Array(QUESTIONS.length).fill(null);
+let lastResult = null;
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  $(id).classList.add('active');
+  window.scrollTo({top:0, behavior:'instant' in window ? 'auto' : 'auto'});
+}
+
+/* ---------- 渲染题目 ---------- */
+function renderQuestion(){
+  const q = QUESTIONS[current];
+  $('qIndex').textContent = current + 1;
+  $('progressFill').style.width = ((current + 1) / QUESTIONS.length * 100) + '%';
+  $('qTitle').textContent = q.q;
+
+  const box = $('options');
+  box.innerHTML = '';
+  const keys = ['A','B','C','D'];
+  q.o.forEach((text, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'opt' + (answers[current] === i ? ' picked' : '');
+    btn.innerHTML = `<span class="key">${keys[i]}</span><span>${text}</span>`;
+    btn.addEventListener('click', () => chooseOption(i, btn));
+    box.appendChild(btn);
+  });
+
+  $('prevBtn').disabled = (current === 0);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ---------- 选择选项 ---------- */
+function chooseOption(idx, btn){
+  if (btn.dataset.locked) return;
+  document.querySelectorAll('.opt').forEach(b => b.dataset.locked = '1');
+  answers[current] = idx;
+  document.querySelectorAll('.opt').forEach(b => b.classList.remove('picked'));
+  btn.classList.add('picked');
+
+  setTimeout(() => {
+    if (current < QUESTIONS.length - 1){
+      current++;
+      renderQuestion();
+    } else {
+      finish();
+    }
+  }, 240);
+}
+
+/* ---------- 计算 & 出结果 ---------- */
+function finish(){
+  let total = 0;
+  answers.forEach((a, i) => {
+    if (a === null) return;
+    total += SCORES[a];
+  });
+  let result = RESULTS[RESULTS.length - 1];
+  for (const r of RESULTS){
+    if (total >= r.min && total <= r.max){ result = r; break; }
+  }
+  lastResult = result;
+  renderResult(total, result);
+  showScreen('screen-result');
+}
+
+/* ---------- 渲染结果页 ---------- */
+function renderResult(total, r){
+  $('resultHero').innerHTML = `
+    <div class="hero-badge">${r.tag}</div>
+    <div class="hero-name">${r.name}</div>
+    <div class="hero-score">本次得分 ${total} 分 · 匹配区间 ${r.min}~${r.max} 分</div>
+  `;
+
+  const legend = RADAR_KEYS.map((k, i) => `
+    <div class="legend-item">
+      <span class="lg-name">${k}</span>
+      <span class="lg-bar"><i style="width:${r.radar[i] * 10}%"></i></span>
+      <span class="lg-val">${r.radar[i].toFixed(1)}</span>
+    </div>`).join('');
+
+  $('resultBody').innerHTML = `
+    <div class="card">
+      <h3 class="card-title">✅ 你的人格画像</h3>
+      <p class="card-lead">${r.portrait}</p>
+      <p class="card-text">${r.desc}</p>
+      <div class="keywords">${r.keywords.map(k => `<span>${k}</span>`).join('')}</div>
+      <p class="card-warn">⚠️ 短板：${r.weakness}</p>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">🕸 八维能力评分</h3>
+      <div class="radar-wrap">
+        <canvas id="radarCanvas"></canvas>
+        <div class="legend">${legend}</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">🕰 深宫存活数据</h3>
+      <div class="survive-line">
+        <span class="rating">生存评级 ${r.rating}</span>
+        <span class="rating-note">${r.ratingNote}</span>
+      </div>
+      <p class="card-text">${r.survive}</p>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">🔮 人物命格</h3>
+      <p class="card-lead">${r.fate}</p>
+      <p class="card-text">${r.fateText}</p>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">📖 性格深度解析</h3>
+      <p class="card-text">${r.deep}</p>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">🎯 深宫适配岗位</h3>
+      <div class="jobs">${r.jobs.map(j => `<span>${j}</span>`).join('')}</div>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">💔 致命弱点</h3>
+      <p class="card-text">${r.fatal}</p>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">📜 结局复盘</h3>
+      <p class="card-text">${r.ending}</p>
+    </div>
+
+    <div class="card">
+      <h3 class="card-title">🌏 现代人格</h3>
+      <p class="card-lead">${r.modern}</p>
+    </div>
+  `;
+
+  requestAnimationFrame(() => {
+    setTimeout(() => drawRadar(r), 40);
+  });
+}
+
+/* ---------- 雷达图 ---------- */
+function drawRadar(r){
+  const canvas = $('radarCanvas');
+  if (!canvas) return;
+  const dpr = window.devicePixelRatio || 1;
+  const size = Math.min(300, Math.max(220, window.innerWidth - 120));
+
+  canvas.style.width = size + 'px';
+  canvas.style.height = size + 'px';
+  canvas.width = Math.round(size * dpr);
+  canvas.height = Math.round(size * dpr);
+
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, size, size);
+
+  const n = RADAR_KEYS.length;
+  const cx = size / 2, cy = size / 2;
+  const R = size * 0.33;
+  const ang = i => -Math.PI / 2 + i * (2 * Math.PI / n);
+
+  // 网格
+  for (let ring = 1; ring <= 5; ring++){
+    ctx.beginPath();
+    const rr = R * ring / 5;
+    for (let i = 0; i < n; i++){
+      const a = ang(i);
+      const x = cx + rr * Math.cos(a), y = cy + rr * Math.sin(a);
+      i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = 'rgba(217,180,106,0.16)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+  // 轴线
+  for (let i = 0; i < n; i++){
+    const a = ang(i);
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(cx + R * Math.cos(a), cy + R * Math.sin(a));
+    ctx.strokeStyle = 'rgba(217,180,106,0.16)';
+    ctx.stroke();
+  }
+  // 数据区域
+  ctx.beginPath();
+  for (let i = 0; i < n; i++){
+    const a = ang(i);
+    const rr = R * r.radar[i] / 10;
+    const x = cx + rr * Math.cos(a), y = cy + rr * Math.sin(a);
+    i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = 'rgba(217,180,106,0.26)';
+  ctx.fill();
+  ctx.strokeStyle = '#d9b46a';
+  ctx.lineWidth = 2;
+  ctx.lineJoin = 'round';
+  ctx.stroke();
+
+  // 数据点
+  for (let i = 0; i < n; i++){
+    const a = ang(i);
+    const rr = R * r.radar[i] / 10;
+    ctx.beginPath();
+    ctx.arc(cx + rr * Math.cos(a), cy + rr * Math.sin(a), 3, 0, Math.PI * 2);
+    ctx.fillStyle = '#f6e6c0';
+    ctx.fill();
+  }
+
+  // 标签
+  ctx.font = '12px "PingFang SC","Microsoft YaHei",sans-serif';
+  ctx.fillStyle = '#d9b46a';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  for (let i = 0; i < n; i++){
+    const a = ang(i);
+    const rr = R + 20;
+    ctx.fillText(RADAR_KEYS[i], cx + rr * Math.cos(a), cy + rr * Math.sin(a));
+  }
+}
+
+/* ---------- 事件绑定 ---------- */
+$('startBtn').addEventListener('click', () => {
+  current = 0;
+  answers.fill(null);
+  renderQuestion();
+  showScreen('screen-quiz');
+});
+
+$('prevBtn').addEventListener('click', () => {
+  if (current > 0){
+    current--;
+    renderQuestion();
+  }
+});
+
+$('restartBtn').addEventListener('click', () => {
+  current = 0;
+  answers.fill(null);
+  lastResult = null;
+  showScreen('screen-intro');
+});
+
+let resizeTimer = null;
+window.addEventListener('resize', () => {
+  if (!lastResult) return;
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if ($('screen-result').classList.contains('active')) drawRadar(lastResult);
+  }, 180);
+});
+</script>
+</body>
+</html>
